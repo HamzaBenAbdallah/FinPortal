@@ -9,7 +9,7 @@ initializeApp(config.firebaseConfig);
 
 interface AppProps {}
 
-const App: React.FC<AppProps> = (props) => {
+const App = (props: AppProps) => {
   return (
     <BrowserRouter>
       <Routes>

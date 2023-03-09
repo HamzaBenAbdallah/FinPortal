@@ -6,7 +6,7 @@ interface AuthRouteProps {
   children: React.ReactNode;
 }
 
-const AuthRoute: React.FC<AuthRouteProps> = ({ children }) => {
+const AuthRoute = ({ children }: AuthRouteProps) => {
   const auth = getAuth();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);

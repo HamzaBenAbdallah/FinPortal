@@ -2,7 +2,7 @@ import { getAuth, signOut } from "firebase/auth";
 
 interface HomeProps {}
 
-const Home: React.FC<HomeProps> = (props) => {
+const Home = (props: HomeProps) => {
   const auth = getAuth();
 
   return (

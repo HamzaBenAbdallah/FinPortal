@@ -4,7 +4,7 @@ import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 interface LoginProps {}
 
-const Login: React.FC<LoginProps> = (props) => {
+const Login = (props: LoginProps) => {
   const auth = getAuth();
   const navigate = useNavigate();
   const [authing, setAuthing] = useState(false);
