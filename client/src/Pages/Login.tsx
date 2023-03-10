@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
-interface LoginProps {}
+export interface LoginProps {}
 
 const Login = (props: LoginProps) => {
   const auth = getAuth();

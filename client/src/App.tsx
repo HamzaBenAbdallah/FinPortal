@@ -1,13 +1,13 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { initializeApp } from "firebase/app";
-import { config } from "Config/config";
+import { config } from "Config/Firebase";
 import Home from "Pages/Home";
 import Login from "Pages/Login";
 import AuthRoute from "Components/AuthRoute";
 
 initializeApp(config.firebaseConfig);
 
-interface AppProps {}
+export interface AppProps {}
 
 const App = (props: AppProps) => {
   return (
