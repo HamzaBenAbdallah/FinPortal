@@ -10,11 +10,23 @@ const SERVER_PORT = process.env.SERVER_PORT
   ? Number(process.env.SERVER_PORT)
   : 1337;
 
-export const config = {
+const config = {
   mongo: {
+    options: {
+      useUnifiedTopology: true,
+      useNewUrlParser: true,
+      socketTimeoutMS: 30000,
+      keepAlive: true,
+      poolSize: 50,
+      autoIndex: false,
+      retryWrites: false,
+    },
     url: MONGO_URL,
   },
   server: {
+    host: "localhost",
     port: SERVER_PORT,
   },
 };
+
+export default config;

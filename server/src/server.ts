@@ -1,7 +1,7 @@
 import express from "express";
 import http from "http";
 import mongoose from "mongoose";
-import { config } from "./config/MongoDB.js";
+import config from "./config/config.js";
 import Logging from "./library/Logging.js";
 import userRoutes from "./routes/User.js";
 
@@ -9,7 +9,7 @@ const app = express();
 
 // Connect to MongoDB
 mongoose
-  .connect(config.mongo.url, { retryWrites: true, w: "majority" })
+  .connect(config.mongo.url, config.mongo.options)
   .then(() => {
     Logging.info("Connected to MongoDB");
     StartServer();

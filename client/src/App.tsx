@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { initializeApp } from "firebase/app";
-import { config } from "Config/Firebase";
+import config from "Config/config";
 import Home from "Pages/Home";
 import Login from "Pages/Login";
 import AuthRoute from "Components/AuthRoute";
