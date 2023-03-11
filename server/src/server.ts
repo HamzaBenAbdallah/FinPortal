@@ -3,6 +3,7 @@ import http from "http";
 import mongoose from "mongoose";
 import { config } from "./config/MongoDB.js";
 import Logging from "./library/Logging.js";
+import userRoutes from "./routes/User.js";
 
 const app = express();
 
@@ -55,6 +56,7 @@ const StartServer = () => {
   });
 
   /** Routes */
+  app.use("/users", userRoutes);
 
   /** Health check */
   app.get("/ping", (req, res, next) =>
