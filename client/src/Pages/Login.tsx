@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import IPageProps from "Interfaces/page";
 
-export interface ILoginProps {}
-
-const Login = (props: ILoginProps) => {
+const Login = (props: IPageProps) => {
   const auth = getAuth();
   const navigate = useNavigate();
   const [authing, setAuthing] = useState(false);

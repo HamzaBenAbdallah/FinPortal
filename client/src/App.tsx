@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { initializeApp } from "firebase/app";
 import config from "Config/config";
 import Home from "Pages/Home";
@@ -11,19 +11,17 @@ export interface IAppProps {}
 
 const App = (props: IAppProps) => {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <AuthRoute>
-              <Home />
-            </AuthRoute>
-          }
-        />
-        <Route path="/login" element={<Login />} />
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <AuthRoute>
+            <Home />
+          </AuthRoute>
+        }
+      />
+      <Route path="/login" element={<Login />} />
+    </Routes>
   );
 };
 

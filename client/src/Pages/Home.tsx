@@ -1,8 +1,7 @@
 import { getAuth, signOut } from "firebase/auth";
+import IPageProps from "Interfaces/page";
 
-export interface IHomeProps {}
-
-const Home = (props: IHomeProps) => {
+const Home = (props: IPageProps) => {
   const auth = getAuth();
 
   return (
