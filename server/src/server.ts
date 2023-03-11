@@ -1,15 +1,23 @@
 import express from "express";
 import http from "http";
 import mongoose from "mongoose";
-import config from "./config/config.js";
+import firebaseAdmin from "firebase-admin";
 import Logging from "./library/Logging.js";
+import config from "./config/config.js";
+import serviceAccountKey from "./config/serviceAccountKey.json" assert { type: "json" };
 import userRoutes from "./routes/User.js";
 
 const app = express();
 
+// Firebase Admin SDK initialization
+const serviceAccount = serviceAccountKey as firebaseAdmin.ServiceAccount;
+firebaseAdmin.initializeApp({
+  credential: firebaseAdmin.credential.cert(serviceAccount),
+});
+
 // Connect to MongoDB
 mongoose
-  .connect(config.mongo.url, config.mongo.options)
+  .connect(config.mongo.url, { retryWrites: false, w: "majority" })
   .then(() => {
     Logging.info("Connected to MongoDB");
     StartServer();

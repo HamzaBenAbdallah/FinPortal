@@ -12,15 +12,6 @@ const SERVER_PORT = process.env.SERVER_PORT
 
 const config = {
   mongo: {
-    options: {
-      useUnifiedTopology: true,
-      useNewUrlParser: true,
-      socketTimeoutMS: 30000,
-      keepAlive: true,
-      poolSize: 50,
-      autoIndex: false,
-      retryWrites: false,
-    },
     url: MONGO_URL,
   },
   server: {
