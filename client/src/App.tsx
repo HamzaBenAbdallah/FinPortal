@@ -7,9 +7,9 @@ import AuthRoute from "Components/AuthRoute";
 
 initializeApp(config.firebaseConfig);
 
-export interface AppProps {}
+export interface IAppProps {}
 
-const App = (props: AppProps) => {
+const App = (props: IAppProps) => {
   return (
     <BrowserRouter>
       <Routes>

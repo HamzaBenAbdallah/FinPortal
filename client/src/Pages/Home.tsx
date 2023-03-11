@@ -1,8 +1,8 @@
 import { getAuth, signOut } from "firebase/auth";
 
-export interface HomeProps {}
+export interface IHomeProps {}
 
-const Home = (props: HomeProps) => {
+const Home = (props: IHomeProps) => {
   const auth = getAuth();
 
   return (
