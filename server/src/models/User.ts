@@ -1,18 +1,9 @@
-import mongoose, { Document, Schema } from "mongoose";
+import IUser from "../interfaces/user.js";
+import mongoose, { Schema } from "mongoose";
 
-export interface IUser {
-  name: string;
-}
+const UserSchema: Schema = new Schema({
+    uid: { type: String, unique: true },
+    name: { type: String },
+});
 
-export interface IUserModel extends IUser, Document {}
-
-const UserSchema: Schema = new Schema(
-  {
-    name: { type: String, required: true },
-  },
-  {
-    versionKey: false,
-  }
-);
-
-export default mongoose.model<IUserModel>("User", UserSchema);
+export default mongoose.model<IUser>("User", UserSchema);
