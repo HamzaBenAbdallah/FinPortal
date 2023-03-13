@@ -2,44 +2,44 @@ import { createContext } from "react";
 import IUser, { DEFAULT_FIRE_TOKEN, DEFAULT_USER } from "Interfaces/user";
 
 export interface IUserState {
-  user: IUser;
-  fire_token: string;
+    user: IUser;
+    fire_token: string;
 }
 
 export interface IUserActions {
-  type: "login" | "logout";
-  payload: IUserState;
+    type: "login" | "logout";
+    payload: IUserState;
 }
 
 export const initialUserState: IUserState = {
-  user: DEFAULT_USER,
-  fire_token: DEFAULT_FIRE_TOKEN,
+    user: DEFAULT_USER,
+    fire_token: DEFAULT_FIRE_TOKEN,
 };
 
 export const userReducer = (state: IUserState, action: IUserActions) => {
-  let user = action.payload.user;
-  let fire_token = action.payload.fire_token;
+    let user = action.payload.user;
+    let fire_token = action.payload.fire_token;
 
-  switch (action.type) {
-    case "login":
-      localStorage.setItem("fire_token", fire_token);
-      return { user, fire_token };
-    case "logout":
-      localStorage.removeItem("fire_token");
-      return initialUserState;
-    default:
-      return state;
-  }
+    switch (action.type) {
+        case "login":
+            localStorage.setItem("fire_token", fire_token);
+            return { user, fire_token };
+        case "logout":
+            localStorage.removeItem("fire_token");
+            return initialUserState;
+        default:
+            return state;
+    }
 };
 
 export interface IUserContextProps {
-  userState: IUserState;
-  userDispatch: React.Dispatch<IUserActions>;
+    userState: IUserState;
+    userDispatch: React.Dispatch<IUserActions>;
 }
 
 const UserContext = createContext<IUserContextProps>({
-  userState: initialUserState,
-  userDispatch: () => {},
+    userState: initialUserState,
+    userDispatch: () => {},
 });
 
 export const UserContextConsumer = UserContext.Consumer;
