@@ -1,9 +1,10 @@
 import { useEffect, useReducer, useState } from "react";
 import { Routes, Route } from "react-router-dom";
+import UserContext, { initialUserState, userReducer } from "Context/user";
+import AuthRoute from "Components/AuthRoute";
+import GlobalStyle from "Styles/global";
 import Home from "Pages/Home";
 import Login from "Pages/Login";
-import AuthRoute from "Components/AuthRoute";
-import UserContext, { initialUserState, userReducer } from "Context/user";
 import Loading from "Components/Loading";
 
 export interface IAppProps {}
@@ -59,6 +60,7 @@ const App = (props: IAppProps) => {
 
     return (
         <UserContext.Provider value={userContextValues}>
+            <GlobalStyle />
             <Routes>
                 <Route
                     path="/"
