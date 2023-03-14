@@ -1,13 +1,18 @@
 import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import firebase from "firebase/compat";
 import UserContext from "Context/user";
 import IPageProps from "Interfaces/page";
-import { SignInWithSocialMedia as SocialMediaPopup } from "Modules/auth";
+import {
+    Authenticate,
+    SignInWithSocialMedia as SocialMediaPopup,
+} from "Modules/auth";
 import ErrorText from "Components/ErrorText";
 import { Providers } from "Config/firebase";
 import Loading from "Components/Loading";
 
 const Login = (props: IPageProps) => {
+    const navigate = useNavigate();
     const [authenticating, setAuthenticating] = useState(false);
     const [error, setError] = useState<string>("");
     const userContext = useContext(UserContext);
@@ -29,7 +34,26 @@ const Login = (props: IPageProps) => {
                     if (name) {
                         try {
                             let fire_token = await user.getIdToken();
-                            // authenticate with the backend
+                            Authenticate(
+                                uid,
+                                name,
+                                fire_token,
+                                (error, _user) => {
+                                    if (error) {
+                                        setError(error);
+                                        setAuthenticating(false);
+                                    } else if (_user) {
+                                        userContext.userDispatch({
+                                            type: "login",
+                                            payload: {
+                                                user: _user,
+                                                fire_token,
+                                            },
+                                        });
+                                        navigate("/");
+                                    }
+                                }
+                            );
                         } catch (error) {
                             setError("invalid token");
                             console.error(error);

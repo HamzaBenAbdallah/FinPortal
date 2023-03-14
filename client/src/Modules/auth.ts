@@ -18,7 +18,7 @@ export const Authenticate = async (
     callback: (error: string | null, user: IUser | null) => void
 ) => {
     try {
-        const response = await axios({
+        let response = await axios({
             method: "POST",
             url: `${config.server.url}/users/login`,
             data: {
@@ -43,7 +43,7 @@ export const Validate = async (
     callback: (error: string | null, user: IUser | null) => void
 ) => {
     try {
-        const response = await axios({
+        let response = await axios({
             method: "GET",
             url: `${config.server.url}/users/validate`,
             headers: { Authorization: `Bearer ${fire_token}` },

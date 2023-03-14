@@ -1,10 +1,14 @@
 import { useEffect, useReducer, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import UserContext, { initialUserState, userReducer } from "Context/user";
-import AuthRoute from "Components/AuthRoute";
+import {
+    UserContextProvider,
+    initialUserState,
+    userReducer,
+} from "Context/user";
 import GlobalStyle from "Styles/global";
-import Home from "Pages/Home";
-import Login from "Pages/Login";
+import routes from "Config/routes";
+import { Validate } from "Modules/auth";
+import AuthRoute from "Components/AuthRoute";
 import Loading from "Components/Loading";
 
 export interface IAppProps {}
@@ -32,7 +36,7 @@ const App = (props: IAppProps) => {
     const CheckLocalStorageForCredentials = () => {
         setAuthStage("Checking credentials ...");
 
-        const fire_token = localStorage.getItem("token");
+        const fire_token = localStorage.getItem("fire_token");
 
         if (fire_token === null) {
             userDispatch({ type: "logout", payload: initialUserState });
@@ -41,11 +45,20 @@ const App = (props: IAppProps) => {
                 setLoading(false);
             }, 1000);
         } else {
-            /** validate with the backend */
-            setAuthStage("Credentials found, validating ...");
-            setTimeout(() => {
-                setLoading(false);
-            }, 1000);
+            return Validate(fire_token, (error, user) => {
+                if (error) {
+                    userDispatch({ type: "logout", payload: initialUserState });
+                    setAuthStage("User not valid, logging out.");
+                    setLoading(false);
+                } else if (user) {
+                    userDispatch({
+                        type: "login",
+                        payload: { user, fire_token },
+                    });
+                    setAuthStage("User is valid, logging in.");
+                    setLoading(false);
+                }
+            });
         }
     };
 
@@ -55,24 +68,38 @@ const App = (props: IAppProps) => {
     };
 
     if (loading) {
-        return <Loading />;
+        return <Loading>{authStage}</Loading>;
     }
 
     return (
-        <UserContext.Provider value={userContextValues}>
+        <UserContextProvider value={userContextValues}>
             <GlobalStyle />
             <Routes>
-                <Route
-                    path="/"
-                    element={
-                        <AuthRoute>
-                            <Home />
-                        </AuthRoute>
+                {routes.map((route, index) => {
+                    if (route.auth) {
+                        return (
+                            <Route
+                                key={index}
+                                path={route.path}
+                                element={
+                                    <AuthRoute>
+                                        <route.component />
+                                    </AuthRoute>
+                                }
+                            />
+                        );
                     }
-                />
-                <Route path="/login" element={<Login />} />
+
+                    return (
+                        <Route
+                            key={index}
+                            path={route.path}
+                            element={<route.component />}
+                        />
+                    );
+                })}
             </Routes>
-        </UserContext.Provider>
+        </UserContextProvider>
     );
 };
 

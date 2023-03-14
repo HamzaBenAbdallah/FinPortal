@@ -1,7 +1,9 @@
-export interface ILoadingProps {}
+export interface ILoadingProps {
+    children?: React.ReactNode;
+}
 
-const Loading = (props: ILoadingProps) => {
-    return <div>Loading</div>;
+const Loading = ({ children }: ILoadingProps) => {
+    return <div>{children}</div>;
 };
 
 export default Loading;
