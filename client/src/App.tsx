@@ -23,9 +23,7 @@ const App = (props: IAppProps) => {
     );
 
     useEffect(() => {
-        setTimeout(() => {
-            CheckLocalStorageForCredentials();
-        }, 1000);
+        CheckLocalStorageForCredentials();
     }, []);
 
     /**
@@ -41,9 +39,7 @@ const App = (props: IAppProps) => {
         if (fire_token === null) {
             userDispatch({ type: "logout", payload: initialUserState });
             setAuthStage("No credentials found.");
-            setTimeout(() => {
-                setLoading(false);
-            }, 1000);
+            setLoading(false);
         } else {
             return Validate(fire_token, (error, user) => {
                 if (error) {

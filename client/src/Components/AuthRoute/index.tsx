@@ -12,7 +12,6 @@ const AuthRoute = ({ children }: IAuthRouteProps) => {
 
     useEffect(() => {
         if (user._id === "") {
-            console.log("Unauthorized access, redirecting ...");
             navigate("/login");
         }
     }, [user]);
