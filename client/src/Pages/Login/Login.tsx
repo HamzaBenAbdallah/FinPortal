@@ -25,7 +25,6 @@ const Login = (props: IPageProps) => {
 
         SocialMediaPopup(provider)
             .then(async (result) => {
-                console.log(result);
                 let user = result.user;
                 if (user) {
                     let uid = user.uid;
