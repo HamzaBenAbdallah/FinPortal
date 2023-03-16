@@ -16,7 +16,7 @@ export default createGlobalStyle`
         margin: 0;
         padding: 0;
         outline: 0;
-        font-family: 'Source Sans Pro', sans-serif;
+        font-family: 'Lato', sans-serif;
     }
     /*
         3. Allow percentage-based heights in the application
