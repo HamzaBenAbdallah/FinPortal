@@ -9,7 +9,6 @@ import GlobalStyle from "Styles/global";
 import routes from "Config/routes";
 import { Validate } from "Modules/auth";
 import AuthRoute from "Components/AuthRoute";
-import Loading from "Components/Loading";
 
 export interface IAppProps {}
 
@@ -64,7 +63,7 @@ const App = (props: IAppProps) => {
     };
 
     if (loading) {
-        return <Loading>{authStage}</Loading>;
+        return <div>{authStage}</div>;
     }
 
     return (
