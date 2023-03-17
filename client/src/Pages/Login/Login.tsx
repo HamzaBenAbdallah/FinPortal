@@ -21,7 +21,7 @@ const Login = (props: IPageProps) => {
     return (
         <Wrapper>
             <Container>
-                <Title>Welcome Back</Title>
+                <Title>Sign in to FinPortal</Title>
                 <GoogleButton
                     disabled={authenticating}
                     onClick={() => SignInWithSocialMedia(Providers.google)}
