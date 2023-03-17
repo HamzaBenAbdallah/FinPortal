@@ -1,6 +1,7 @@
 import IRoute from "Interfaces/route";
 import Home from "Pages/Home";
 import Login from "Pages/Login";
+import Register from "Pages/Register";
 
 const authRoutes: IRoute[] = [
     {
@@ -13,7 +14,7 @@ const authRoutes: IRoute[] = [
         path: "/register",
         name: "Register",
         auth: false,
-        component: Login,
+        component: Register,
     },
 ];
 

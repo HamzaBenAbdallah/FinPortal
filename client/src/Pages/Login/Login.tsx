@@ -11,12 +11,13 @@ import {
     Title,
     FormContainer,
     Prompt,
-    Signup,
+    Register,
     Reset,
 } from "./Login.styles";
 
 const Login = (props: IPageProps) => {
-    const { authenticating, error, SignInWithSocialMedia } = useLogin();
+    const { authenticating, error, SignInWithSocialMedia, NavigateToSignup } =
+        useLogin();
 
     return (
         <Wrapper>
@@ -43,7 +44,8 @@ const Login = (props: IPageProps) => {
                     <SubmitButton>Sign in</SubmitButton>
                 </FormContainer>
                 <Prompt>
-                    Need an account? <Signup>Sign up</Signup>
+                    Need an account?{" "}
+                    <Register onClick={NavigateToSignup}>Sign up</Register>
                 </Prompt>
                 <Prompt>
                     Forgot your password? <Reset>Reset it</Reset>

@@ -72,9 +72,14 @@ export const useLogin = () => {
             });
     };
 
+    const NavigateToSignup = () => {
+        navigate("/register");
+    };
+
     return {
         authenticating,
         error,
         SignInWithSocialMedia,
+        NavigateToSignup,
     };
 };

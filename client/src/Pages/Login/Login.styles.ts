@@ -37,7 +37,7 @@ const Link = styled.a`
     margin-left: 0.25rem;
 `;
 
-export const Signup = styled(Link)`
+export const Register = styled(Link)`
     border-radius: 0.25rem;
     border: 1px solid rgb(182, 187, 209);
     padding: 0.15rem 0.5rem;
